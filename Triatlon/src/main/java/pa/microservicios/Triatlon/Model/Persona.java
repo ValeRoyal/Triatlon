@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AccessLevel;
@@ -33,19 +34,21 @@ public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    
-    @NotNull
+
+    @NotBlank
     @Column(name = "nombre", nullable = false, unique = false, length = 50)
     String nombre;
     
+    @NotBlank
     @Positive
     @Column(name = "edad", nullable = false, unique = false, length = 3)
     Integer edad;
-    
-     @NotNull
+
+    @NotBlank
     @Column(name = "identificacion", nullable = false, unique = false, length = 50)
     String identificacion;
-    
+
+    @NotBlank
     @Email
     @Column(name = "correo", nullable = false, unique = false, length = 20)
     String correoPersona;
