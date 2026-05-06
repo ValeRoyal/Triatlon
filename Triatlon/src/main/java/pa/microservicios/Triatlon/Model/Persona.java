@@ -4,7 +4,14 @@
  */
 package pa.microservicios.Triatlon.Model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +26,28 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
+//super clase a mapear en los dto's
 @MappedSuperclass
 public class Persona {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     
+    @NotNull
+    @Column(name = "nombre", nullable = false, unique = false, length = 50)
+    String nombre;
+    
+    @Positive
+    @Column(name = "edad", nullable = false, unique = false, length = 3)
+    Integer edad;
+    
+     @NotNull
+    @Column(name = "identificacion", nullable = false, unique = false, length = 50)
+    String identificacion;
+    
+    @Email
+    @Column(name = "correo", nullable = false, unique = false, length = 20)
+    String correoPersona;
+
 }
