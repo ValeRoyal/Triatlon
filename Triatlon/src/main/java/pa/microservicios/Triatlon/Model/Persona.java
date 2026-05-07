@@ -5,15 +5,13 @@
 package pa.microservicios.Triatlon.Model;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -30,8 +28,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 //super clase a mapear en los dto's
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public class Persona {
 
     @Id
@@ -42,7 +39,7 @@ public class Persona {
     @Column(name = "nombre", nullable = false, unique = false, length = 50)
     String nombre;
 
-    @NotBlank
+    @NotNull
     @Positive
     @Column(name = "edad", nullable = false, unique = false, length = 3)
     Integer edad;
@@ -53,11 +50,11 @@ public class Persona {
 
     @NotBlank
     @Email
-    @Column(name = "correo", nullable = false, unique = false, length = 20)
-    String correoPersona;
+    @Column(name = "correo", nullable = false, unique = false, length = 100)
+    String correo;
 
     @NotBlank
-    @Column(name = "correo", nullable = false, unique = false, length = 20)
+    @Column(name = "genero", nullable = false, unique = false)
     String genero;
 
     @Column(name = "activo", nullable = false)
