@@ -16,7 +16,13 @@ import lombok.experimental.FieldDefaults;
 
 /**
  *
- * @author Asus
+ * @author Asus Entidad del modelo Triatleta con los siguientes atributos:
+ * 
+ * urlFoto
+ * categoria
+ * modalidadCross
+ * especialidad
+ * fechaNacimiento  
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
