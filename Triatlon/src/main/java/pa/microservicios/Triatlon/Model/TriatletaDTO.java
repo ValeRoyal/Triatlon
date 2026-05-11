@@ -16,22 +16,20 @@ import lombok.experimental.FieldDefaults;
 
 /**
  *
- * @author Asus Entidad del modelo Triatleta con los siguientes atributos:
- * 
- * urlFoto
- * categoria
- * modalidadCross
- * especialidad
- * fechaNacimiento  
+ * @author Asus 
+ * Entidad del modelo Triatleta con los siguientes atributos:
+ * String urlFoto String categoria String modalidadCross String especialidad
+ * LocalDate fechaNacimiento (tipo de dato abstracto de java)
  */
-@EqualsAndHashCode(callSuper = true)
-@Data
-@Entity
-@Table(name = "triatleta")
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@EqualsAndHashCode(callSuper = true) //Para que incluya los campos de la superclase (clase padre) por eso esta en true
+@Data //Getters y Setters
+@Entity //Entidad a mapear ORM => objet relational mapping
+@Table(name = "triatleta") //Nombre de la tabal que lo va a representar en la BD
+@FieldDefaults(level = AccessLevel.PRIVATE) //Todos los atributos de nivel de acceso privado
 public class TriatletaDTO extends Persona {
-    
-    @NotBlank
+
+    @NotBlank //No puede ser en blanco
+    //Nombre de la columna, no puede ser nula, no es unica, maxima cantidad 200 VarChar
     @Column(name = "url_foto", nullable = false, unique = false, length = 200)
     String urlFoto;
 
@@ -47,16 +45,27 @@ public class TriatletaDTO extends Persona {
     @Column(name = "especialidad", nullable = false, unique = false, length = 20)
     String especialidad;
 
-    @Column(name = "fecha_nacimiento", nullable = false, unique = false)
-    LocalDate fechaNacimiento;
-
-    public TriatletaDTO(String urlFoto, String categoria, String modalidadCross, String especialidad, LocalDate fechaNacimiento, Long id, String nombre, Integer edad, String identificacion, String correo, String genero, Boolean activo) {
-        super(id, nombre, edad, identificacion, correo, genero, activo);
+    /**
+     * Constructor de la clase hija, en este caso necesitamos los atributos de
+     * la clase padre, por eso llamamos el super!
+     * @param urlFoto
+     * @param categoria
+     * @param modalidadCross
+     * @param especialidad
+     * @param id
+     * @param nombre
+     * @param fechaNacimiento
+     * @param identificacion
+     * @param correo
+     * @param genero
+     * @param activo
+     */
+    public TriatletaDTO(String urlFoto, String categoria, String modalidadCross, String especialidad, Long id, String nombre, LocalDate fechaNacimiento, String identificacion, String correo, String genero, Boolean activo) {
+        super(id, nombre, fechaNacimiento, identificacion, correo, genero, activo);
         this.urlFoto = urlFoto;
         this.categoria = categoria;
         this.modalidadCross = modalidadCross;
         this.especialidad = especialidad;
-        this.fechaNacimiento = fechaNacimiento;
     }
 
 }

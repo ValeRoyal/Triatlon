@@ -16,9 +16,9 @@ public class TriatlonApplication {
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
-            public void addCoreMappings(CorsRegistry registry) {
+            public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://localhost:8383/")
+                        .allowedOrigins("https://localhost:8383")
                         .allowedMethods("*")
                         .allowedHeaders("*")
                         .maxAge(3600);

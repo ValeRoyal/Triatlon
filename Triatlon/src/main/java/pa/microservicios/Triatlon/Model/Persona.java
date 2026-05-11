@@ -13,6 +13,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import java.time.LocalDate;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,35 +23,36 @@ import lombok.experimental.FieldDefaults;
 /**
  *
  * @author Asus
+ * Clase padre para garantizar la flexibilidad del software digamos
+ * para una futura entidad a registrar
  */
-@Data
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
-@NoArgsConstructor
-//super clase a mapear en los dto's
-@MappedSuperclass
+@Data //Getters y Setters
+@FieldDefaults(level = AccessLevel.PRIVATE) //Todos los atributos de nivel de acceso privado
+@AllArgsConstructor //Constructor con todos los atributos
+@NoArgsConstructor //Constructor vacio
+@MappedSuperclass //Super clase a mapear en los dto's
 public class Persona {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id //Llave primaria
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Llave primaria 
     Long id;
 
-    @NotBlank
+    @NotBlank //No puede ser vacia
+    //Nombre de la columna, no puede ser nula, no es unica, de tamaño 50 VarChar
     @Column(name = "nombre", nullable = false, unique = false, length = 50)
     String nombre;
 
-    @NotNull
-    @Positive
-    @Column(name = "edad", nullable = false, unique = false, length = 3)
-    Integer edad;
+    @NotNull //No puede ser nulo, en este caso no aplica el @NotBlank porque este es un valor numerico entero
+    @Column(name = "fecha_nacimiento", nullable = false, unique = false, length = 50)
+    LocalDate fechaNacimiento;
 
     @NotBlank
-    @Column(name = "identificacion", nullable = false, unique = false, length = 50)
+    @Column(name = "identificacion", nullable = false, unique = true, length = 50)
     String identificacion;
 
     @NotBlank
-    @Email
-    @Column(name = "correo", nullable = false, unique = false, length = 100)
+    @Email //Le decimos a Spring que será una direccion de correo
+    @Column(name = "correo", nullable = false, unique = false, length = 200)
     String correo;
 
     @NotBlank
