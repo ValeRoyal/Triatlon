@@ -5,7 +5,10 @@
 package pa.microservicios.Triatlon.Service;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import pa.microservicios.Triatlon.Model.TriatletaDTO;
 import pa.microservicios.Triatlon.Repository.TriatletaRepository;
@@ -19,6 +22,9 @@ public class TriatletaService {
 
     @Autowired
     private TriatletaRepository triatletaRepository;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
 //================OPERACIONES CRUD=========================
     //=============OPERACION CREATE========================
@@ -45,8 +51,8 @@ public class TriatletaService {
      * @return Optional con el triatleta si existe
      */
     public TriatletaDTO getTriatletaByIdentificacion(String identificacion) {
-        return triatletaRepository.findByIdentificacion(identificacion)
-                .orElseThrow(() -> new RuntimeException("No existe triatleta con identificacion: " + identificacion));
+        Optional<TriatletaDTO> optionalTriatleta = triatletaRepository.findByIdentificacion(identificacion);
+        return optionalTriatleta.get();
     }
 
     /**
@@ -153,6 +159,15 @@ public class TriatletaService {
             throw new RuntimeException("No existe triatleta con id: " + id);
         }
         triatletaRepository.deleteById(id);
+    }
+
+    //====================CORREO DE REGISTRO===============
+    public void enviarCorreoConfimacion(TriatletaDTO triatletaDTO, String asunto, String contenido) {
+        SimpleMailMessage mensaje = new SimpleMailMessage();
+        mensaje.setTo(triatletaDTO.getCorreo());
+        mensaje.setSubject(asunto);
+        mensaje.setText(contenido);
+        mailSender.send(mensaje);
     }
 
 }
