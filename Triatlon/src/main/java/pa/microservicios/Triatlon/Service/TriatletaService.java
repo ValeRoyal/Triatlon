@@ -133,10 +133,10 @@ public class TriatletaService {
      * Actualiza la categoria de un triatleta por su id delegando a repository
      *
      * @param id
-     * @param nuevaCategoira
+     * @param nuevaCategoria
      */
-    public void updateCategoria(Long id, String nuevaCategoira) {
-        int filas = triatletaRepository.actualizarCategoria(id, nuevaCategoira);
+    public void updateCategoria(Long id, String nuevaCategoria) {
+        int filas = triatletaRepository.actualizarCategoria(id, nuevaCategoria);
         if (filas == 0) {
             throw new RuntimeException("No existe triatleta con id: " + id);
         }
@@ -149,7 +149,7 @@ public class TriatletaService {
      * @param id
      */
     public void deleteTriatletaDTO(Long id) {
-        if (triatletaRepository.existsById(id)) {
+        if (!triatletaRepository.existsById(id)) {
             throw new RuntimeException("No existe triatleta con id: " + id);
         }
         triatletaRepository.deleteById(id);
