@@ -46,85 +46,125 @@ document.addEventListener('DOMContentLoaded', function () {
    * labelId:   id del span que contiene el valor mostrado
    * btnId:     id del botón de editar/guardar correspondiente
    */
-  function activarEdicion(campo, patchUrl, propiedad, labelId, btnId) {
-    // Obtiene el span actual y el botón de editar
+ function activarEdicion(campo, patchUrl, propiedad, labelId, btnId) {
     const valorSpan = document.getElementById(labelId);
     const boton = document.getElementById(btnId);
     const valorOriginal = valorSpan.textContent;
-
     let input;
 
-    // Si es la categoría, muestra un select con categorías válidas
     if (campo === 'categoria') {
-      // Lista de opciones para la categoría (debe coincidir con las del registro)
-      const categorias = [
-        "Pre-Benjamín","Benjamín","Alevín","Infantil","Cadetes","Juvenil","Júnior",
-        "Sub-23","Absoluta","Veterano 1","Veterano 2","Veterano 3"
-      ];
-      input = document.createElement('select');
-      input.className = 'input-inline';
-      categorias.forEach(cat => {
-        const opt = document.createElement('option');
-        opt.value = cat;                                  //Valor en el request
-        opt.textContent = cat.charAt(0).toUpperCase() + cat.slice(1); //Visual
-        if (cat === valorOriginal) opt.selected = true;   //Seleccionada la actual
-        input.appendChild(opt);
-      });
+        const categorias = [
+            "Pre-Benjamín","Benjamín","Alevín","Infantil","Cadetes","Juvenil","Júnior",
+            "Sub-23","Absoluta","Veterano 1","Veterano 2","Veterano 3"
+        ];
+        input = document.createElement('select');
+        input.className = 'input-inline';
+        categorias.forEach(cat => {
+            const opt = document.createElement('option');
+            opt.value = cat;
+            opt.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+            if (cat === valorOriginal) opt.selected = true;
+            input.appendChild(opt);
+        });
     } else {
-      // Para nombre y identificación: input de texto simple
-      input = document.createElement('input');
-      input.type = 'text';
-      input.className = 'input-inline';
-      input.value = valorOriginal;
+        input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'input-inline';
+        input.value = valorOriginal;
     }
 
-    // Reemplaza el span visible por el input/select editable
     valorSpan.replaceWith(input);
-
-    // Cambia el botón a "Guardar"
     boton.textContent = "Guardar";
-    // Al guardar, realiza PATCH y actualiza la vista/localStorage si es correcto
+
     boton.onclick = async function () {
-      const nuevoValor = input.value.trim();
-      if (!nuevoValor) return; // Si no escribe nada, no hace nada
+        const nuevoValor = input.value.trim();
+        if (!nuevoValor) return;
 
-      let payload = {};
-      payload[propiedad] = nuevoValor; // Por ejemplo: {categoria: "Alegría"}
+        let payload = {};
+        payload[propiedad] = nuevoValor;
 
-      try {
-        // PATCH al backend
-        const resp = await fetch(patchUrl, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+        try {
+            const peticion = await fetch(patchUrl, {
+                method: 'PATCH',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const mensajeDiv = document.getElementById('mensaje-perfil');
+
+            if (peticion.ok) {
+                usuario[propiedad] = nuevoValor;
+                localStorage.setItem('usuario', JSON.stringify(usuario));
+                input.replaceWith(valorSpan);
+                valorSpan.textContent = nuevoValor;
+                boton.textContent = "Editar";
+                mensajeDiv.textContent = "¡Campo actualizado!";
+                mensajeDiv.className = "mensaje-exito";
+                boton.onclick = () => activarEdicion(campo, patchUrl, propiedad, labelId, btnId);
+            } else {
+                mensajeDiv.textContent = "No se pudo actualizar. Intenta más tarde.";
+                mensajeDiv.className = "mensaje-error";
+            }
+        } catch (error) {
+            const mensajeDiv = document.getElementById('mensaje-perfil');
+            mensajeDiv.textContent = "Error de red al actualizar.";
+            mensajeDiv.className = "mensaje-error";
+        }
+    };
+}
+
+// Conexión de botones con sus URLs y propiedades
+document.getElementById("btn-editar-nombre").onclick = () =>
+    activarEdicion('nombre', `http://localhost:9000/api/triatleta/actualizarnombre/${usuario.id}/nombre`, 'nombre', 'nombre-text', 'btn-editar-nombre');
+
+document.getElementById("btn-editar-identificacion").onclick = () =>
+    activarEdicion('identificacion', `http://localhost:9000/api/triatleta/actualizaridentificacion/${usuario.id}/identificacion`, 'identificacion', 'identificacion-text', 'btn-editar-identificacion');
+
+document.getElementById("btn-editar-categoria").onclick = () =>
+    activarEdicion('categoria', `http://localhost:9000/api/triatleta/actualizarcategoria/${usuario.id}/categoria`, 'categoria', 'categoria-text', 'btn-editar-categoria');
+
+
+
+let updateTodo = async () => {
+    let id = usuario.id;
+    let triatleta = {};
+
+    triatleta.nombre = document.getElementById("nombreTriatleta").value;
+    triatleta.identificacion = document.getElementById("identificacionTriatleta").value;
+    triatleta.categoria = document.getElementById("categoriaTriatleta").value;
+    triatleta.modalidadCross = document.getElementById("crossTriatleta").value;
+    triatleta.especialidad = document.getElementById("especialidadTriatleta").value;
+    triatleta.correo = document.getElementById("correoTriatleta").value;
+    triatleta.activo = document.getElementById("activoTriatleta").value;
+
+    try {
+        const peticion = await fetch("http://localhost:9000/api/triatleta/actualizar/" + id, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(triatleta)
         });
 
         const mensajeDiv = document.getElementById('mensaje-perfil');
-        if (resp.ok) {
-          // Actualiza también localStorage para que al recargar todo luzca bien
-          usuario[propiedad] = nuevoValor;
-          localStorage.setItem('usuario', JSON.stringify(usuario));
-          // Vuelve a poner el span normal y el valor actualizado
-          input.replaceWith(valorSpan);
-          valorSpan.textContent = nuevoValor;
-          boton.textContent = "Editar";
-          mensajeDiv.textContent = "¡Campo actualizado!";
-          mensajeDiv.className = "mensaje-exito";
-          // Restablece el botón para volver a editar si se da click de nuevo
-          boton.onclick = () => activarEdicion(campo, patchUrl, propiedad, labelId, btnId);
+        if (peticion.ok) {
+            mensajeDiv.textContent = "¡Datos actualizados!";
+            mensajeDiv.className = "mensaje-exito";
         } else {
-          mensajeDiv.textContent = "No se pudo actualizar. Intenta más tarde.";
-          mensajeDiv.className = "mensaje-error";
+            mensajeDiv.textContent = "Error al actualizar.";
+            mensajeDiv.className = "mensaje-error";
         }
-      } catch {
-        document.getElementById('mensaje-perfil').textContent =
-          "Error de red al actualizar.";
+    } catch (error) {
+        document.getElementById('mensaje-perfil').textContent = "Error de red al actualizar.";
         document.getElementById('mensaje-perfil').className = "mensaje-error";
-      }
-    };
-  }
+    }
+}
 
-  // --- Rutas PATCH (ajusta si tu back cambia) ---
+  // --- Rutas PATCH ---
   const API_ROUT = 'http://localhost:9000/api/triatleta';
   // ID único del usuario con el cual se hacen operaciones de backend
   const idUsuario = usuario.id;
@@ -141,23 +181,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // --- Botón eliminar cuenta ---
   document.getElementById('btn-eliminar-cuenta').onclick = async function () {
-    // Mensaje de alerta para evitar eliminación accidental
     if (!confirm("¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.")) return;
+
     try {
-      const resp = await fetch(`${API_ROUT}/borrartriatleta/${idUsuario}`, {
-        method: 'DELETE'
-      });
-      if (resp.ok) {
-        localStorage.clear();  // Borra toda la información local
-        window.location.href = 'index.html'; // Redirige a inicio
-      } else {
-        document.getElementById('mensaje-perfil').textContent = "No se pudo eliminar la cuenta.";
+        const peticion = await fetch("http://localhost:9000/api/triatleta/borrartriatleta/" + usuario.id, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (peticion.ok) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        } else {
+            document.getElementById('mensaje-perfil').textContent = "No se pudo eliminar la cuenta.";
+            document.getElementById('mensaje-perfil').className = "mensaje-error";
+        }
+    } catch (error) {
+        document.getElementById('mensaje-perfil').textContent = "Error de red al eliminar.";
         document.getElementById('mensaje-perfil').className = "mensaje-error";
-      }
-    } catch {
-      document.getElementById('mensaje-perfil').textContent = "Error de red al eliminar.";
-      document.getElementById('mensaje-perfil').className = "mensaje-error";
     }
-  };
+};
 
 });

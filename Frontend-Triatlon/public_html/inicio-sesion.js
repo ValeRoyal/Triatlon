@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const mensaje = document.getElementById('mensaje-login');
  
 
-  // Cambia la URL a la misma que usa tu backend
+  
   const API_URL = 'http://localhost:9000/api/triatleta/identificacion/';
 
   form.addEventListener('submit', async function (e) {
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       if (resp.ok) {
-        // Aquí obtienes los datos del usuario
       const datos = await resp.json();
       localStorage.setItem('usuario', JSON.stringify(datos));
         // Usuario encontrado: redirigir a home.html

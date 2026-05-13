@@ -9,9 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('foto-usuario').src = usuario.urlFoto || "https://via.placeholder.com/160";
 
 
-    // === Funciones para buscar y renderizar tablas ===
-    // Ajusta la url base si tu backend cambia de puerto/ruta
-    const API_BASE = 'http://localhost:9000/api/triatleta';
 
     // Campos a mostrar en la tabla (sin id, identificacion, fechaNacimiento)
     const camposMostrar = [
@@ -45,65 +42,103 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Buscar por género
-    document.getElementById('form-genero').onsubmit = async function (e) {
-        e.preventDefault();
-        const genero = document.getElementById('genero-select').value;
-        const tabla = document.getElementById('tabla-genero');
-        if (!genero) return tabla.innerHTML = "<p>Seleccione un género.</p>";
-        try {
-            const resp = await fetch(`${API_BASE}/genero?genero=${encodeURIComponent(genero)}`);
-            const datos = resp.ok ? await resp.json() : [];
-            renderTabla(tabla, datos);
-        } catch {
-            tabla.innerHTML = "<p>Error al buscar.</p>";
-        }
-    };
+    let consultarPorGenero = async (e) => {
+    e.preventDefault();
+    let genero = document.getElementById("genero-select").value;
+    const tabla = document.getElementById("tabla-genero");
+
+    if (!genero) return tabla.innerHTML = "<p>Seleccione un género.</p>";
+
+    try {
+        const peticion = await fetch("http://localhost:9000/api/triatleta/genero?genero=" + encodeURIComponent(genero), {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = peticion.ok ? await peticion.json() : [];
+        renderTabla(tabla, data);
+
+    } catch (error) {
+        tabla.innerHTML = "<p>Error al buscar.</p>";
+    }
+}
 
     // Buscar por categoría
-    document.getElementById('form-categoria').onsubmit = async function (e) {
-        e.preventDefault();
-        const categoria = document.getElementById('categoria-input').value.trim();
-        const tabla = document.getElementById('tabla-categoria');
-        if (!categoria) return tabla.innerHTML = "<p>Ingrese la categoría.</p>";
-        try {
-            const resp = await fetch(`${API_BASE}/categoria?categoria=${encodeURIComponent(categoria)}`);
-            const datos = resp.ok ? await resp.json() : [];
-            renderTabla(tabla, datos);
-        } catch {
-            tabla.innerHTML = "<p>Error al buscar.</p>";
-        }
-    };
+   let consultarPorCategoria = async (e) => {
+    e.preventDefault();
+    let categoria = document.getElementById("categoria-input").value.trim();
+    const tabla = document.getElementById("tabla-categoria");
 
+    if (!categoria) return tabla.innerHTML = "<p>Ingrese la categoría.</p>";
+
+    try {
+        const peticion = await fetch("http://localhost:9000/api/triatleta/categoria?categoria=" + encodeURIComponent(categoria), {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = peticion.ok ? await peticion.json() : [];
+        renderTabla(tabla, data);
+
+    } catch (error) {
+        tabla.innerHTML = "<p>Error al buscar.</p>";
+    }
+}
     // Buscar por especialidad
-    document.getElementById('form-especialidad').onsubmit = async function (e) {
-        e.preventDefault();
-        const espec = document.getElementById('especialidad-input').value.trim();
-        const tabla = document.getElementById('tabla-especialidad');
-        if (!espec) return tabla.innerHTML = "<p>Ingrese la especialidad.</p>";
-        try {
-            const resp = await fetch(`${API_BASE}/especialidad?especialidad=${encodeURIComponent(espec)}`);
-            const datos = resp.ok ? await resp.json() : [];
-            renderTabla(tabla, datos);
-        } catch {
-            tabla.innerHTML = "<p>Error al buscar.</p>";
-        }
-    };
+    let consultarPorEspecialidad = async (e) => {
+    e.preventDefault();
+    let especialidad = document.getElementById("especialidad-input").value.trim();
+    const tabla = document.getElementById("tabla-especialidad");
+
+    if (!especialidad) return tabla.innerHTML = "<p>Ingrese la especialidad.</p>";
+
+    try {
+        const peticion = await fetch("http://localhost:9000/api/triatleta/especialidad?especialidad=" + encodeURIComponent(especialidad), {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = peticion.ok ? await peticion.json() : [];
+        renderTabla(tabla, data);
+
+    } catch (error) {
+        tabla.innerHTML = "<p>Error al buscar.</p>";
+    }
+}
 
     // Buscar por cross
-    document.getElementById('form-cross').onsubmit = async function (e) {
-        e.preventDefault();
-        const cross = document.getElementById('cross-select').value;
-        const tabla = document.getElementById('tabla-cross');
-        if (!cross) return tabla.innerHTML = "<p>Seleccione una opción.</p>";
-        try {
-            // El backend espera "sí"/"no" o "Si"/"No", ajústalo según sea necesario
-            const value = cross.toLowerCase() === "sí" ? "si" : cross.toLowerCase();
-            const resp = await fetch(`${API_BASE}/modalidadcross?cross=${encodeURIComponent(value)}`);
-            const datos = resp.ok ? await resp.json() : [];
-            renderTabla(tabla, datos);
-        } catch {
-            tabla.innerHTML = "<p>Error al buscar.</p>";
-        }
-    };
+    let consultarPorModalidadCross = async (e) => {
+    e.preventDefault();
+    let modalidadCross = document.getElementById("cross-select").value;
+    const tabla = document.getElementById("tabla-cross");
 
+    if (!modalidadCross) return tabla.innerHTML = "<p>Seleccione una opción.</p>";
+
+    try {
+        const value = modalidadCross.toLowerCase() === "sí" ? "si" : modalidadCross.toLowerCase();
+
+        const peticion = await fetch("http://localhost:9000/api/triatleta/modalidadcross?cross=" + encodeURIComponent(value), {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = peticion.ok ? await peticion.json() : [];
+        renderTabla(tabla, data);
+
+    } catch (error) {
+        tabla.innerHTML = "<p>Error al buscar.</p>";
+    }
+}
 });
