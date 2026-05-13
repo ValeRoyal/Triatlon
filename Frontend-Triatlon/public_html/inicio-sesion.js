@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       if (resp.ok) {
+        // Aquí obtienes los datos del usuario
+      const datos = await resp.json();
+      localStorage.setItem('usuario', JSON.stringify(datos));
         // Usuario encontrado: redirigir a home.html
         window.location.href = 'home.html';
       } else {

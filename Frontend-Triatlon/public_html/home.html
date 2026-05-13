@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio - Triatlón</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <!-- Barra superior -->
+  <header class="barra-superior fondo-dark-green">
+    <div class="barra-contenido">
+      <span class="titulo-site texto-moss-green">Triatlón</span>
+      <nav>
+        <button class="boton-nav fondo-rosy-brown texto-beige" id="btn-cerrar-sesion">Cerrar sesión</button>
+        <button class="boton-nav fondo-moss-green texto-midnight-green" id="btn-perfil">Ver Perfil</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Bienvenida y foto perfil -->
+  <main>
+    <section class="seccion-bienvenida fondo-beige texto-moss-green">
+      <div class="bienvenida-contenedor">
+        <img id="foto-usuario" src="https://via.placeholder.com/160" alt="Foto usuario" class="img-perfil">
+        <div>
+          <h2 class="bienvenido">¡Bienvenido, <span id="nombre-usuario"></span>!</h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- Buscar por género -->
+    <section class="busqueda-seccion fondo-rosy-brown texto-beige">
+      <h2>Buscar por Género</h2>
+      <form id="form-genero" class="busqueda-form">
+        <select id="genero-select" class="input-buscar">
+          <option value="">Selecciona el género</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Masculino">Masculino</option>
+        </select>
+        <button type="submit" class="boton-buscar fondo-moss-green texto-midnight-green">Buscar</button>
+      </form>
+      <div id="tabla-genero"></div>
+    </section>
+
+    <!-- Buscar por categoría -->
+    <section class="busqueda-seccion fondo-beige texto-moss-green">
+      <h2>Buscar por Categoría</h2>
+      <form id="form-categoria" class="busqueda-form">
+        <input type="text" id="categoria-input" class="input-buscar" placeholder="Escribe la categoría...">
+        <button type="submit" class="boton-buscar fondo-moss-green texto-midnight-green">Buscar</button>
+      </form>
+      <div id="tabla-categoria"></div>
+    </section>
+
+    <!-- Buscar por especialidad -->
+    <section class="busqueda-seccion fondo-rosy-brown texto-beige">
+      <h2>Buscar por Especialidad</h2>
+      <form id="form-especialidad" class="busqueda-form">
+        <input type="text" id="especialidad-input" class="input-buscar" placeholder="Escribe la especialidad...">
+        <button type="submit" class="boton-buscar fondo-moss-green texto-midnight-green">Buscar</button>
+      </form>
+      <div id="tabla-especialidad"></div>
+    </section>
+
+    <!-- Buscar por Cross -->
+    <section class="busqueda-seccion fondo-beige texto-moss-green">
+      <h2>Buscar por Cross</h2>
+      <form id="form-cross" class="busqueda-form">
+        <select id="cross-select" class="input-buscar">
+          <option value="">¿Hace Cross?</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+        <button type="submit" class="boton-buscar fondo-moss-green texto-midnight-green">Buscar</button>
+      </form>
+      <div id="tabla-cross"></div>
+    </section>
+  </main>
+  <script src="home.js"></script>
+</body>
+</html>

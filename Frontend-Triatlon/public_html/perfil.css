@@ -1,0 +1,112 @@
+main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: var(--moss-green);
+}
+
+.perfil-container {
+  margin-top: 3.2rem;
+  padding: 2.5rem 2.7rem 1.7rem 2.7rem;
+  border-radius: 22px;
+  box-shadow: 0 6px 28px rgba(10,51,35,0.10);
+  max-width: 390px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulo-perfil {
+  font-size: 2rem;
+  margin-bottom: .6rem;
+}
+
+.perfil-foto {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 60px;
+  border: 4px solid var(--rosy-brown);
+  background: var(--rosy-brown);
+  margin-bottom: 1.7rem;
+}
+
+.datos-perfil {
+  width: 100%;
+}
+
+.perfil-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.1rem;
+  gap: 0.7rem;
+}
+
+.perfil-label {
+  width: 120px;
+  font-weight: bold;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.perfil-valor {
+  flex: 1;
+}
+
+.boton-editar {
+  font-size: .98rem;
+  padding: 0.32rem 0.9rem;
+  border-radius: 9px;
+  border: none;
+  background: var(--midnight-green);
+  color: var(--beige);
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.boton-editar:hover {
+  background: var(--rosy-brown);
+  color: var(--beige);
+}
+
+.perfil-acciones {
+  margin-top: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  width: 100%;
+}
+
+.boton-eliminar {
+  background: crimson;
+  color: white;
+  border: none;
+  border-radius: 13px;
+  padding: 0.72rem 1.7rem;
+  font-size: 1.08rem;
+  font-weight: bold;
+  margin-top: 0.7rem;
+  cursor: pointer;
+}
+
+.boton-eliminar:hover {
+  background: #a62121;
+}
+
+.mensaje-exito {
+  color: seagreen;
+}
+.mensaje-error {
+  color: crimson;
+}
+
+input.input-inline {
+  font-size: 1rem;
+  padding: .20rem .7rem;
+  border: 1.3px solid var(--moss-green);
+  border-radius: 0.5rem;
+  width: 105px;
+}
