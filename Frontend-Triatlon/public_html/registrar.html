@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registrarse - Triatlón</title>
-  <link rel="stylesheet" href="styles.css"><!-- Colores y fuentes globales -->
-  <link rel="stylesheet" href="registrar.css"><!-- Estilos específicos de registro -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="registrar.css">
 </head>
 <body>
   <!-- BARRA SUPERIOR -->
@@ -22,17 +22,66 @@
   <main>
     <section class="tarjeta-registro fondo-beige">
       <h2 class="titulo-registro texto-moss-green">Registrarse</h2>
-      <form id="form-registro" class="form-registro">
-        <!-- Cada input es requerido igual que en tu modelo Java -->
-        <input type="text" id="nombre"       name="nombre"         class="input-registro" placeholder="Nombre completo" required>
-        <input type="email" id="correo"      name="correo"         class="input-registro" placeholder="Correo electrónico" required>
+      <form id="form-registro" class="form-registro" enctype="multipart/form-data">
+        <input type="text" id="nombre" name="nombre" class="input-registro" placeholder="Nombre completo" required>
+
+        <input type="email" id="correo" name="correo" class="input-registro" placeholder="Correo electrónico" required>
+
         <input type="text" id="identificacion" name="identificacion" class="input-registro" placeholder="Identificación (cédula, DNI...)" required>
+
         <input type="date" id="fecha-nacimiento" name="fechaNacimiento" class="input-registro" placeholder="Fecha de nacimiento" required>
-        <input type="text" id="genero" name="genero" class="input-registro" placeholder="Género (Ej: Masculino/Femenino)" required>
-        <input type="url" id="foto"    name="urlFoto"     class="input-registro" placeholder="URL de tu foto" required>
-        <input type="text" id="categoria" name="categoria" class="input-registro" placeholder="Categoría (Ej: Juvenil, Élite...)" required>
-        <input type="text" id="especialidad" name="especialidad" class="input-registro" placeholder="Especialidad (Ej: Natación)" required>
-        <input type="text" id="modalidad-cross" name="modalidadCross" class="input-registro" placeholder="Modalidad Cross (Sí/No)" required>
+
+        <!-- GENERO -->
+        <select id="genero" name="genero" class="input-registro" required>
+          <option value="">Género...</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Masculino">Masculino</option>
+        </select>
+
+        <!-- FOTO: ahora seleccionador de archivo -->
+        <input type="file" id="foto" name="foto" class="input-registro" accept="image/*" required>
+
+        <!-- CATEGORÍA: select con todas las opciones -->
+        <select id="categoria" name="categoria" class="input-registro" required>
+          <option value="">Categoría...</option>
+          <option>pre-benjamin</option>
+          <option>benjamin</option>
+          <option>alevin</option>
+          <option>infantil</option>
+          <option>cadetes</option>
+          <option>juvenil</option>
+          <option>junior</option>
+          <option>sub-23</option>
+          <option>absoluta</option>
+          <option>veterano 1</option>
+          <option>veterano 2</option>
+          <option>veterano 3</option>
+        </select>
+
+        <!-- ESPECIALIDAD: select clásico Y carrete de imágenes -->
+        <div class="especialidad-contenedor">
+          <label style="margin-bottom:.4rem">Especialidad</label>
+          <select id="especialidad" name="especialidad" class="input-registro" required>
+            <option value="">Elige una especialidad</option>
+            <option>Distancia SuperSprint</option>
+            <option>Distancia Sprint</option>
+            <option>Distancia Olímpica</option>
+            <option>Media Distancia</option>
+            <option>Larga Distancia</option>
+            <option>Ultraman</option>
+          </select>
+
+          <!-- Carrete de imágenes de especialidad -->
+          <div id="carrete-especialidad" class="carrete-especialidad"></div>
+        </div>
+
+        <!-- MODALIDAD CROSS -->
+        <select id="modalidad-cross" name="modalidadCross" class="input-registro" required>
+          <option value="">¿Participas en modalidad Cross?</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+
         <button type="submit" class="boton-registro fondo-moss-green texto-midnight-green">Registrar</button>
         <div id="mensaje-registro" class="mensaje-registro"></div>
       </form>

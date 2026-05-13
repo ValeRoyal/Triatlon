@@ -1,90 +1,98 @@
+/*Creditoa a la IA por su aporte en la comenterealización (No sé si así se escribe) de los archivos .css .html .js*/
+
+/* Importa dos fuentes de Google: Caesar Dressing para títulos y Montserrat para el texto general */
 @import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Montserrat&display=swap');
 
-/* Paleta de colores GLOBAL */
+/* ---------- Paleta de colores global definida en variables CSS, puede usarse con var(--nombre) ---------- */
 :root {
-  --dark-green:     #0A3323;
-  --moss-green:     #839958;
-  --beige:          #F7F4D5;
-  --rosy-brown:     #D3968C;
-  --midnight-green: #105666;
+  --dark-green:     #0A3323;   /* Verde oscuro, para fondos o texto principal */
+  --moss-green:     #839958;   /* Verde musgo, útil como texto destacado o fondo */
+  --beige:          #F7F4D5;   /* Beige claro, ideal como fondo principal */
+  --rosy-brown:     #D3968C;   /* Marrón rosado, para acentos o fondos de sección */
+  --midnight-green: #105666;   /* Verde azulado, para resaltar o usar en botones */
 }
 
-/* Fuentes globales */
+/* ---------- Fuente base y reseteo de márgenes/paddings para todo el sitio ---------- */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Montserrat', Arial, sans-serif;
+  margin: 0;    /* Quita el margen por defecto alrededor del body */
+  padding: 0;   /* Quita el espacio interno por defecto del body */
+  font-family: 'Montserrat', Arial, sans-serif; /* Fuente principal para todo el texto */
 }
 
-/* Clases de fondo */
-.fondo-dark-green    { background: var(--dark-green); }
-.fondo-moss-green    { background: var(--moss-green); }
-.fondo-beige         { background: var(--beige); }
-.fondo-rosy-brown    { background: var(--rosy-brown); }
+/* ---------- Clases de fondo para reutilización rápida en cualquier elemento ---------- */
+.fondo-dark-green    { background: var(--dark-green);    } /* Fondo verde oscuro */
+.fondo-moss-green    { background: var(--moss-green);    } /* Fondo verde musgo */
+.fondo-beige         { background: var(--beige);         } /* Fondo beige claro */
+.fondo-rosy-brown    { background: var(--rosy-brown);    } /* Fondo marrón rosado */
 
-/* Clases de texto*/
-.texto-moss-green    { color: var(--moss-green); }
-.texto-midnight-green{ color: var(--midnight-green);}
-.texto-beige         { color: var(--beige); }
-.texto-dark-green    { color: var(--dark-green); }
+/* ---------- Clases de color de texto ---------- */
+.texto-moss-green    { color: var(--moss-green);         } /* Texto verde musgo */
+.texto-midnight-green{ color: var(--midnight-green);     } /* Texto verde azulado */
+.texto-beige         { color: var(--beige);              } /* Texto beige */
+.texto-dark-green    { color: var(--dark-green);         } /* Texto verde oscuro */
 
-/* Títulos */
+/* ---------- Los títulos deben usar fuente especial para destacarse ---------- */
 .titulo-site, h1, h2, .titulo {
-  font-family: 'Caesar Dressing', cursive;
+  font-family: 'Caesar Dressing', cursive; /* Fuente decorativa para títulos y sitio */
 }
 
+/* ---------- Enlaces con subrayado personalizado ---------- */
 .enlace {
-  font-size: 1rem;
-  margin-top: 2px;
-  text-decoration: underline;         /* Subraya para parecer enlace */
+  font-size: 1rem;         /* Tamaño de letra estándar */
+  margin-top: 2px;         /* Espacio por encima del enlace, útil si está debajo de otro texto */
+  text-decoration: underline; /* Subraya para que parezca enlace clásico */
 }
 
-/* Lo usamos para darle un poquito de animación a los botones, esto lo conectamos con el js, ok? */
+/* ---------- Animación pulse: efecto de aumento rápido y regreso ---------- */
+/* Esta animación puede ser aplicada a botones para dar feedback visual */
 @keyframes pulse {
-  0% { transform: scale(1);}
-  50% { transform: scale(1.13);}
-  100% { transform: scale(1);}
+  0% { transform: scale(1);     } /* Tamaño original */
+  50% { transform: scale(1.13); } /* Aumenta el tamaño a 113% */
+  100% { transform: scale(1);   } /* Regresa al tamaño original */
 }
 
-/* Se le agrega a los botones */
+/* ---------- Aplica la animación pulse a cualquier elemento con esta clase (normalmente un botón) ---------- */
 .boton-animado {
-  animation: pulse 0.28s;
+  animation: pulse 0.28s; /* Ejecuta la animación pulse durante 0.28 segundos */
 }
 
-/* === Barra superior === */
+/* ---------- Barra superior ---------- */
 .barra-superior {
-  /* Elemento fijo arriba sin borde, ocupa todo el ancho */
-  width: 100%;
-  padding: 0.7rem 0;                 /* Espacio arriba y abajo */
+  width: 100%;        /* Ocupa todo el ancho de la ventana, de borde a borde */
+  padding: 0.7rem 0;  /* Espacio interno arriba y abajo de la barra (0.7rem), nada a los lados */
+  /* No tiene borde inferior para apariencia limpia */
 }
 
+/* ---------- Contenedor de la barra superior ---------- */
 .barra-contenido {
-  max-width: 900px;                  /* Limita ancho del contenido */
-  margin: 0 auto;                    /* Centra la barra */
-  display: flex;                     /* Elementos en fila */
-  justify-content: space-between;    /* Extremos: título a la izq, nav a la der */
-  align-items: center;               /* Centra verticalmente */
+  max-width: 900px;   /* Limita el ancho del contenido para que no se estire demasiado en pantallas grandes */
+  margin: 0 auto;     /* Centra el contenedor horizontalmente en la página */
+  display: flex;      /* Usa Flexbox para organizar los elementos en fila */
+  justify-content: space-between; /* Separa los elementos: título a la izquierda, nav a la derecha */
+  align-items: center;/* Centra verticalmente los elementos dentro del contenedor */
 }
 
+/* ---------- Título dentro de la barra superior ---------- */
 .titulo-site {
-  font-size: 2.2rem;                 /* Título destacado en la barra */
-  font-weight: bold;
+  font-size: 2.2rem;  /* Hace el texto grande para que resalte */
+  font-weight: bold;  /* Negrita para mayor énfasis */
 }
 
-/* Botones del nav */
+/* ---------- Estilos para los botones de la barra de navegación ---------- */
 .boton-nav {
-  border: none;                      /* Quita borde */
-  border-radius: 18px;               /* Bordes redondeados */
-  padding: 0.5rem 1.2rem;            /* Espaciado interno */
-  margin-left: 8px;                  /* Espacio entre botones */
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  font-family: 'Caesar Dressing', cursive; /* Igual que títulos */
-  transition: background 0.2s;
+  border: none;                          /* Elimina el borde por defecto del botón */
+  border-radius: 18px;                   /* Hace los bordes redondeados, apariencia de píldora */
+  padding: 0.5rem 1.2rem;                /* Espaciado interno: 0.5 rem arriba y abajo, 1.2 rem a los lados */
+  margin-left: 8px;                      /* Espacio a la izquierda de cada botón, separa los botones entre sí */
+  font-size: 1rem;                       /* Tamaño de texto estándar para el botón */
+  font-weight: bold;                     /* Texto del botón en negrita */
+  cursor: pointer;                       /* Cambia el cursor a mano cuando pasas el mouse */
+  font-family: 'Caesar Dressing', cursive; /* Usa la fuente especial para darle identidad */
+  transition: background 0.2s;           /* Hace que el fondo cambie suavemente al pasar el mouse */
 }
 
+/* ---------- Efecto al pasar el mouse sobre los botones ---------- */
 .boton-nav:hover,
 .boton-login:hover {
-  background: #d3d898;
+  background: #d3d898; /* Cambia el color de fondo a un tono más claro cuando el mouse está encima */
 }

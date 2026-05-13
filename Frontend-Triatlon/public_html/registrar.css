@@ -1,20 +1,19 @@
 main {
     display: flex;
     min-height: 100vh;
-    align-items: center;
+    align-items: flex-start;        /* inicia arriba para que no quede tan centrado vertical */
     justify-content: center;
     background: var(--moss-green);
-
-      padding-top: 2.5rem;      /* Espacio arriba de la tarjeta */
-  padding-bottom: 2.5rem;     /* Espacio abajo de la tarjeta */
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
 }
 
-/* Tarjeta de registro */
+/* Tarjeta de registro más grande */
 .tarjeta-registro {
-    max-width: 430px;
+    max-width: 900px;
     width: 100%;
     margin: auto;
-    padding: 2.3rem 2rem 2rem 2rem;
+    padding: 2.3rem 3rem 2.5rem 3rem; /* Más padding para más espacio interno */
     border-radius: 20px;
     box-shadow: 0 6px 28px rgba(10, 51, 35, 0.12);
     display: flex;
@@ -68,4 +67,37 @@ main {
     min-height: 1.2em;
     font-size: 1rem;
     text-align: center;
+}
+
+.especialidad-contenedor {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.carrete-especialidad {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+  margin-top: 1rem;
+  padding-bottom: 1.2rem;
+  padding-left: 2rem;   /* Más espacio a la izquierda */
+  scroll-snap-type: x mandatory; /* Habilita snap horizontal */
+  align-items: center;            /* Centra las imágenes si hay menos contenido */
+}
+
+.img-especialidad {
+  width: 320px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 5px solid transparent;
+  cursor: pointer;
+  transition: border 0.18s, box-shadow 0.14s, transform 0.14s;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  scroll-snap-align: start;        /* Cada imagen hace snap al inicio del scroll */
+}
+
+.img-especialidad.seleccionada {
+  border: 5px solid var(--midnight-green);
+  transform: scale(1.03);
 }
