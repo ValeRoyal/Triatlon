@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 /**
@@ -26,6 +27,7 @@ import lombok.experimental.FieldDefaults;
 @Entity //Entidad a mapear ORM => objet relational mapping
 @Table(name = "triatleta") //Nombre de la tabal que lo va a representar en la BD
 @FieldDefaults(level = AccessLevel.PRIVATE) //Todos los atributos de nivel de acceso privado
+@NoArgsConstructor //Constructor vacio
 public class TriatletaDTO extends Persona {
 
     @NotBlank //No puede ser en blanco

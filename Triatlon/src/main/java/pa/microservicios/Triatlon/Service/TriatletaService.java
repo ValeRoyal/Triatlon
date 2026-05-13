@@ -7,6 +7,7 @@ package pa.microservicios.Triatlon.Service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,13 @@ public class TriatletaService {
     @Autowired
     private JavaMailSender mailSender;
 
+    //EXTRAIDO DE: https://docs.spring.io/spring-framework/reference/core/beans/annotation-config/value-annotations.html
+    @Value("${correo.asunto}")//extrae del application properties y lo guarda en esta variable global
+    private String asuntoRegistro;
+
+    @Value("${correo.mensaje}")//extrae del applicaton properties y lo guarda en esta variable global
+    private String mensajeRegistro;
+
 //================OPERACIONES CRUD=========================
     //=============OPERACION CREATE========================
     /**
@@ -40,7 +48,17 @@ public class TriatletaService {
             //el service hace la validacion y lanza la excepcion, ya el controller se encarga de propagarla
             throw new RuntimeException("Ya existe un triatleta con identificacion: " + triatletaDTO.getIdentificacion());
         }
-        return triatletaRepository.save(triatletaDTO);
+        
+        TriatletaDTO guardado = triatletaRepository.save(triatletaDTO);
+
+        try {
+            String contenido = mensajeRegistro.replace("{nombre}", guardado.getNombre()); //remplazar la variable nombre por el nombre del triatleta creado
+            enviarCorreoConfimacion(guardado, asuntoRegistro, contenido); //usamos el metodo
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return guardado;
     }
 
     //=============OPERACIONES READ========================
@@ -51,7 +69,7 @@ public class TriatletaService {
      * @return Optional con el triatleta si existe
      */
     public TriatletaDTO getTriatletaByIdentificacion(String identificacion) {
-        Optional<TriatletaDTO> optionalTriatleta = triatletaRepository.findByIdentificacion(identificacion);
+        Optional<TriatletaDTO> optionalTriatleta = triatletaRepository.findByIdentificacion(identificacion);//delega a repository
         return optionalTriatleta.get();
     }
 
@@ -62,7 +80,7 @@ public class TriatletaService {
      * @return Grupo de triatletas consultado por genero Femenino/Masculino
      */
     public List<TriatletaDTO> getTriatletasByGenero(String genero) {
-        List<TriatletaDTO> triatletasByGenero = triatletaRepository.findByGenero(genero);
+        List<TriatletaDTO> triatletasByGenero = triatletaRepository.findByGenero(genero);//delega a repository
         return triatletasByGenero;
     }
 
@@ -73,7 +91,7 @@ public class TriatletaService {
      * @return Grupo de triatletas consultado por su categoria
      */
     public List<TriatletaDTO> getTriatletasByCategoria(String categoria) {
-        List<TriatletaDTO> triatletasByCategoria = triatletaRepository.findByCategoria(categoria);
+        List<TriatletaDTO> triatletasByCategoria = triatletaRepository.findByCategoria(categoria);//delega a repository
         return triatletasByCategoria;
     }
 
@@ -84,7 +102,7 @@ public class TriatletaService {
      * @return Grupo de triatletas consultado por especialidad
      */
     public List<TriatletaDTO> getTriatletasByEspecialidad(String especialidad) {
-        List<TriatletaDTO> triatletasByEspecialidad = triatletaRepository.findByEspecialidad(especialidad);
+        List<TriatletaDTO> triatletasByEspecialidad = triatletaRepository.findByEspecialidad(especialidad);//delega a repository
         return triatletasByEspecialidad;
     }
 
@@ -95,7 +113,7 @@ public class TriatletaService {
      * @return Grupo de triatletas consultado si hace o no hace Modalidad Cross
      */
     public List<TriatletaDTO> getTriatletasByModalidadCross(String cross) {
-        List<TriatletaDTO> triatletasByModalidadCross = triatletaRepository.findByModalidadCross(cross);
+        List<TriatletaDTO> triatletasByModalidadCross = triatletaRepository.findByModalidadCross(cross);//delega a repository
         return triatletasByModalidadCross;
     }
 
@@ -105,7 +123,7 @@ public class TriatletaService {
             throw new RuntimeException("No existe triatleta con id: " + id);
         }
         triatletaDTO.setId(id); // asegura que actualiza el correcto
-        return triatletaRepository.save(triatletaDTO);
+        return triatletaRepository.save(triatletaDTO);//delega a repository
     }
 
     /**
@@ -115,7 +133,7 @@ public class TriatletaService {
      * @param nuevoNombre
      */
     public void updateNombre(Long id, String nuevoNombre) {
-        int filas = triatletaRepository.actualizarNombre(id, nuevoNombre);
+        int filas = triatletaRepository.actualizarNombre(id, nuevoNombre);//delega a repository
         if (filas == 0) {
             throw new RuntimeException("No existe triatleta con id: " + id);
         }
@@ -129,7 +147,7 @@ public class TriatletaService {
      * @param nuevaIdentificacion
      */
     public void updateIdentificacion(Long id, String nuevaIdentificacion) {
-        int filas = triatletaRepository.actualizarIdentificacion(id, nuevaIdentificacion);
+        int filas = triatletaRepository.actualizarIdentificacion(id, nuevaIdentificacion);//delega a repository
         if (filas == 0) {
             throw new RuntimeException("No existe triatleta con id: " + id);
         }
@@ -142,7 +160,7 @@ public class TriatletaService {
      * @param nuevaCategoria
      */
     public void updateCategoria(Long id, String nuevaCategoria) {
-        int filas = triatletaRepository.actualizarCategoria(id, nuevaCategoria);
+        int filas = triatletaRepository.actualizarCategoria(id, nuevaCategoria);//delega a repository
         if (filas == 0) {
             throw new RuntimeException("No existe triatleta con id: " + id);
         }
@@ -158,7 +176,7 @@ public class TriatletaService {
         if (!triatletaRepository.existsById(id)) {
             throw new RuntimeException("No existe triatleta con id: " + id);
         }
-        triatletaRepository.deleteById(id);
+        triatletaRepository.deleteById(id);//delega a repository
     }
 
     //====================CORREO DE REGISTRO===============
