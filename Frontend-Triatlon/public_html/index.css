@@ -1,98 +1,102 @@
-/* === SECCIÓN PRESENTACIÓN === */
+/* === SECCIÓN PRESENTACIÓN (portada de la app) === */
 .seccion-presentacion {
-  width: 100%;                       /* Ocupa todo el ancho */
-  min-height: 170px;                 /* Altura mínima */
-  text-align: center;                /* Centra texto y emojis */
-  padding: 2.5rem 0;                 /* Espacio arriba y abajo */
+  width: 100%;                  /* Ocupa todo el ancho disponible del viewport */
+  min-height: 170px;            /* Asegura que tenga una altura mínima respetable */
+  text-align: center;           /* Centra todo el texto y los emojis horizontalmente */
+  padding: 2.5rem 0;            /* Espacio arriba y abajo para airear la sección */
 }
 
 .emojis {
-  font-size: 4rem;                   /* Emojis bien grandes */
-  margin-bottom: 1rem;               /* Espacio debajo de emojis */
+  font-size: 4rem;              /* Emojis bien grandes para destacar las disciplinas */
+  margin-bottom: 1rem;          /* Espacio debajo del bloque de emojis */
 }
+
 .emoji {
-  margin: 0 15px;                    /* Espacio entre cada emoji */
+  margin: 0 15px;               /* Espacio horizontal entre los emojis (deja aire) */
 }
 
 .descripcion-presentacion {
-  font-size: 1.3rem;                 /* Texto grande */
-  font-weight: 500;
-  margin: 0 auto;                    /* Centra horizontal */
-  max-width: 380px;                  /* No se extiende demasiado */
+  font-size: 1.3rem;            /* Texto destacado y grande debajo del título */
+  font-weight: 500;             /* Un poco más grueso que normal */
+  margin: 0 auto;               /* Centra horizontalmente */
+  max-width: 380px;             /* Limita el ancho para hacerlo cómodo en desktop */
 }
 
-/* === SECCIÓN EQUIPO === */
+/* === SECCIÓN EQUIPO (integrantes del proyecto) === */
 .seccion-equipo {
-  width: 100%;
-  min-height: 220px;                  /* Altura mínima */
-  text-align: center;
-  padding: 2.5rem 0 3.5rem 0;         /* Espacio arriba y abajo, más para dar aire */
+  width: 100%;                  /* Ocupa todo el ancho del viewport */
+  min-height: 220px;            /* Altura mínima suficiente */
+  text-align: center;           /* Centra los textos y las tarjetas */
+  padding: 2.5rem 0 3.5rem 0;   /* Arriba y abajo, da mucho espacio debajo */
 }
 
 .titulo {
-  font-size: 4rem;                  /* Un poco más grande para figurar */
-  margin-bottom: 0.3rem;
+  font-size: 4rem;              /* Título muy grande para destacar el encabezado */
+  margin-bottom: 0.3rem;        /* Un espacio sutil debajo del título */
 }
 
 .desc-equipo {
-  font-size: 1.1rem;
-  margin-bottom: 2.2rem;              /* Airea la parte de arriba */
-  max-width: 500px;
-  margin-left: auto;                  /* Centra horizontal */
+  font-size: 1.1rem;            /* Texto ligeramente más grande que normal */
+  margin-bottom: 2.2rem;        /* Espacio después de la descripción y antes de las tarjetas */
+  max-width: 500px;             /* No muy ancho para que sea legible */
+  margin-left: auto;            /* Centra horizontalmente el texto */
   margin-right: auto;
 }
 
-/* Grid de tarjetas del equipo */
+/* === Grid de tarjetas del equipo === */
 .equipo-grid {
-  display: flex;                      /* Tarjetas alineadas en fila */
-  justify-content: center;            /* Centra el grid */
-  gap: 2.5rem;                        /* Espacio entre tarjetas */
-  flex-wrap: wrap;                    /* Si no caben, bajan */
-  margin-top: 10px;
+  display: flex;                /* Usa Flexbox para organizar tarjetas en fila */
+  justify-content: center;      /* Centra el grid horizontalmente */
+  gap: 2.5rem;                  /* Espacio entre cada tarjeta */
+  flex-wrap: wrap;              /* Si no caben, bajan a la siguiente línea */
+  margin-top: 10px;             /* Espacio arriba del grid de tarjetas */
 }
 
 .equipo-card {
-  width: 200px;                       /* ancho fijo para las tarjetas */
-  display: flex;
+  width: 200px;                 /* Ancho fijo de la tarjeta */
+  display: flex;                /* Flex vertical para los elementos dentro */
   flex-direction: column;
-  align-items: center;
-  border-radius: 16px;                 /* Bordes redondeados */
-  box-shadow: 0 3px 18px rgba(0,0,0,0.12); /* Sombra sutil */
-  padding: 1.4rem 0.5rem 1.2rem 0.5rem;   /* Airea adentro */
-  transition: box-shadow 0.15s;
+  align-items: center;          /* Centra todo dentro de la tarjeta */
+  border-radius: 16px;          /* Bordes bien redondeados */
+  box-shadow: 0 3px 18px rgba(0,0,0,0.12); /* Sombra suave para flotar */
+  padding: 1.4rem 0.5rem 1.2rem 0.5rem; /* Espaciado interno (arriba, der, abajo, izq) */
+  transition: box-shadow 0.15s; /* Transición suave en el hover */
 }
+
 .equipo-card:hover {
-  box-shadow: 0 7px 32px rgba(0,0,0,0.18); /* Sombra más grande al pasar */
+  box-shadow: 0 7px 32px rgba(0,0,0,0.18); /* Sombra más intensa al pasar el mouse */
 }
 
 .avatar {
-  font-size: 2.4rem;                  /* Emoji grande de cada persona */
+  font-size: 2.4rem;            /* Emoji grande de cada persona/integrante */
 }
 
 .nombre {
-  margin-top: 0.8rem;
-  font-weight: bold;
-  font-size: 1.1rem;
+  margin-top: 0.8rem;           /* Espacio arriba del nombre */
+  font-weight: bold;            /* Nombre bien destacado en negrita */
+  font-size: 1.1rem;            /* Un poco más grande de lo normal */
 }
 
+/* === SECCIÓN DE CONTACTO === */
 .seccion-contacto {
-  width: 100%;
-  min-height: 150px;
-  text-align: center;
-  padding: 1rem 0;
+  width: 100%;                  /* Ocupa todo el ancho */
+  min-height: 150px;            /* Altura mínima razonable */
+  text-align: center;           /* Centra todo el texto dentro de la sección */
+  padding: 1rem 0;              /* Espacio arriba y abajo */
 }
 
 .titulo-contacto {
-  font-size: 2.8rem;
-  margin-bottom: 0.5rem;
+  font-size: 2.8rem;            /* Título de la sección de contacto bien grande */
+  margin-bottom: 0.5rem;        /* Espacio debajo del título */
 }
 
-/* Animación pulse para botones */
+/* === Animación pulse para botones (efecto de expansión al dar click) === */
 @keyframes pulse {
   0%   { transform: scale(1); }
   50%  { transform: scale(1.13); }
   100% { transform: scale(1); }
 }
+
 .boton-animado {
-  animation: pulse 0.28s;
+  animation: pulse 0.28s;       /* Aplica la animación de 'palpitar' durante 0.28 segundos */
 }

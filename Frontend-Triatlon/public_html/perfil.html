@@ -1,47 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfil - Triatlón</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="perfil.css">
+  <meta charset="UTF-8"> <!-- Establece el juego de caracteres a UTF-8 para soportar tildes y eñes -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la página sea responsive en dispositivos móviles -->
+  <title>Perfil - Triatlón</title> <!-- Título que se muestra en la pestaña del navegador -->
+  <link rel="stylesheet" href="styles.css"> <!-- Hoja de estilos global (paleta, fuentes, barra superior, etc) -->
+  <link rel="stylesheet" href="perfil.css"> <!-- Hoja de estilos específica del perfil (formato contenedor, filas, botones) -->
 </head>
 <body>
+  <!-- Barra superior, mantiene navegación y branding -->
   <header class="barra-superior fondo-dark-green">
     <div class="barra-contenido">
-      <span class="titulo-site texto-moss-green">Triatlón</span>
+      <span class="titulo-site texto-moss-green">Triatlón</span> <!-- Nombre del sitio, fuente decorativa/llamativa -->
       <nav>
+        <!-- Botón para cerrar sesión del usuario -->
         <button class="boton-nav fondo-rosy-brown texto-beige" id="btn-cerrar-sesion">Cerrar sesión</button>
+        <!-- Botón para ir al home/inicio del sitio -->
         <button class="boton-nav fondo-moss-green texto-midnight-green" id="btn-home">Inicio</button>
       </nav>
     </div>
   </header>
+  
   <main>
+    <!-- Sección principal del perfil, con fondo y borde redondeado -->
     <section class="perfil-container fondo-beige texto-moss-green">
-      <h2 class="titulo-perfil">Mi perfil</h2>
-      <img id="foto-usuario" class="perfil-foto" src="" alt="Foto de perfil">
-      <div class="datos-perfil">
+      <h2 class="titulo-perfil">Mi perfil</h2> <!-- Título de sección -->
 
+      <!-- Foto de perfil del usuario -->
+      <img id="foto-usuario" class="perfil-foto" src="" alt="Foto de perfil">
+      
+      <div class="datos-perfil">
+        <!-- Filas de datos: nombre, identificación, categoría, todos alineados y visibles -->
+
+        <!-- Campo editable: nombre -->
         <div class="perfil-row">
-          <span class="perfil-label">Nombre:</span>
-          <span class="perfil-valor" id="nombre-text"></span>
-          <button class="boton-editar" data-campo="nombre" id="btn-editar-nombre">Editar</button>
+          <span class="perfil-label">Nombre:</span>                   <!-- Label -->
+          <span class="perfil-valor" id="nombre-text"></span>         <!-- Valor mostrado (editable) -->
+          <button class="boton-editar" data-campo="nombre" id="btn-editar-nombre">Editar</button> <!-- Botón para activar edición inline -->
         </div>
         
+        <!-- Campo editable: identificación -->
         <div class="perfil-row">
           <span class="perfil-label">Identificación:</span>
           <span class="perfil-valor" id="identificacion-text"></span>
           <button class="boton-editar" data-campo="identificacion" id="btn-editar-identificacion">Editar</button>
         </div>
         
+        <!-- Campo editable: categoría -->
         <div class="perfil-row">
           <span class="perfil-label">Categoría:</span>
           <span class="perfil-valor" id="categoria-text"></span>
           <button class="boton-editar" data-campo="categoria" id="btn-editar-categoria">Editar</button>
         </div>
 
-        <!-- Otros datos no editables -->
+        <!-- Campos solo informativos/no editables -->
         <div class="perfil-row">
           <span class="perfil-label">Correo:</span>
           <span class="perfil-valor" id="correo-text"></span>
@@ -63,12 +75,16 @@
           <span class="perfil-valor" id="fecha-text"></span>
         </div>
       </div>
+      
       <div class="perfil-acciones">
+        <!-- Botón para eliminar la cuenta. Ejecuta confirmación y eliminación definitiva -->
         <button id="btn-eliminar-cuenta" class="boton-eliminar">Eliminar Cuenta</button>
+        <!-- Mensaje informativo para mostrar confirmaciones o errores de edición/borrado -->
         <div id="mensaje-perfil"></div>
       </div>
     </section>
   </main>
+  <!-- Script para conducta, eventos y edición de perfil -->
   <script src="perfil.js"></script>
 </body>
 </html>

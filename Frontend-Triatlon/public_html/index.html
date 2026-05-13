@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"> <!-- Usa codificación UTF-8 para soportar tildes, eñes y caracteres especiales -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Triatlón</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="index.css">
+    <!-- Hace la página responsive: ajusta a móviles y tablets -->
+  <title>Triatlón</title> <!-- Título de la pestaña en el navegador -->
+  <link rel="stylesheet" href="styles.css"> <!-- Hoja de estilos principal: fuentes, colores y barra de arriba -->
+  <link rel="stylesheet" href="index.css">  <!-- Estilos específicos para la página de inicio, presentación, equipo, etc. -->
 </head>
 
 <body>
 
-  <!-- LA BARRA DE ARRIBA CON LOS BOTONES -->
+  <!-- ====== BARRA SUPERIOR ====== -->
   <header class="barra-superior fondo-dark-green">
     <div class="barra-contenido">
+      <!-- Nombre de la app en la barra -->
       <span class="titulo-site texto-moss-green">Triatlón</span>
       <nav>
+        <!-- Botón que lleva a login/inicio de sesión -->
         <button class="boton-nav fondo-moss-green texto-midnight-green" id="btn-inicio">Iniciar Sesión</button>
+        <!-- Botón para pantalla de registro nuevo -->
         <button class="boton-nav fondo-moss-green texto-midnight-green" id="btn-registrarse">Registrarse</button>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- SECCIÓN DE PRESENTACIÓN CHICUELOS -->
+    <!-- ====== PRESENTACIÓN PRINCIPAL ====== -->
     <section class="seccion-presentacion fondo-beige texto-moss-green">
       <div class="emojis">
+        <!-- Iconos representando las disciplinas: natación-bici-correr -->
         <span class="emoji">🏊</span>
         <span class="emoji">🚴</span>
         <span class="emoji">🏃</span>
@@ -37,7 +41,7 @@
       </p>
     </section>
 
-    <!-- NOSOTROS -->
+    <!-- ====== SECCIÓN "¿QUIÉNES SOMOS?" ====== -->
     <section class="seccion-equipo fondo-rosy-brown texto-beige">
       <h2 class="titulo">¿Quiénes somos?</h2>
       <p class="desc-equipo">
@@ -45,59 +49,60 @@
         deportistas y equipos. Aprendemos y apoyamos el deporte con tecnología simple y de calidad.
       </p>
       <div class="equipo-grid">
+        <!-- Primer integrante con avatar y enlace a LinkedIn -->
         <div class="equipo-card fondo-beige texto-moss-green">
           <span class="avatar">🌸</span>
           <span class="nombre">Valentina Aguilar Perdomo</span>
-          <a class="enlace texto-moss-green" href="https://www.linkedin.com/in/valen-aguilar-/"
-            target="_blank">LinkedIn</a>
+          <a class="enlace texto-moss-green" href="https://www.linkedin.com/in/valen-aguilar-/" target="_blank">LinkedIn</a>
         </div>
+        <!-- Segundo integrante -->
         <div class="equipo-card fondo-beige texto-moss-green">
           <span class="avatar">🚀</span>
           <span class="nombre">Luis Sebastián Correa Barreto</span>
-          <a class="enlace texto-moss-green" href="https://www.linkedin.com/in/luis-correa-60a729365/"
-            target="_blank">LinkedIn</a>
+          <a class="enlace texto-moss-green" href="https://www.linkedin.com/in/luis-correa-60a729365/" target="_blank">LinkedIn</a>
         </div>
+        <!-- Tercer integrante -->
         <div class="equipo-card fondo-beige texto-moss-green">
           <span class="avatar">⭐</span>
           <span class="nombre">Sergio Steven Vanegas Cuervo</span>
-          <a class="enlace texto-moss-green" href="https://www.linkedin.com/in/sergio-vanegas-612a82407/"
-            target="_blank">LinkedIn</a>
+          <a class="enlace texto-moss-green" href="https://www.linkedin.com/in/sergio-vanegas-612a82407/" target="_blank">LinkedIn</a>
         </div>
       </div>
     </section>
 
+    <!-- ====== SECCIÓN DE CONTACTO ====== -->
     <section class="seccion-contacto fondo-dark-green texto-beige">
       <h2 class="titulo-contacto">Contáctanos</h2>
       <p class="desc-contacto">
         ¿Tienes preguntas o quieres colaborar? Envíanos un correo a triatlon@universidad.edu.co
       </p>
     </section>
-
   </main>
 
+  <!-- ====== SCRIPTS DE NAVEGACIÓN Y ANIMACIÓN ====== -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      // Toma los dos botones
       const btnInicio = document.getElementById('btn-inicio');
       const btnRegistro = document.getElementById('btn-registrarse');
 
+      // Función que agrega animación a un botón antes de cambiar de página
       function animarYRedirigir(boton, destino) {
-        // Quita la clase por si ya la tenía
-        boton.classList.remove('boton-animado');
-        // Forzar reflujo para reiniciar la animación
-        void boton.offsetWidth;
-        // Añade la clase de animación
-        boton.classList.add('boton-animado');
-        // Espera la duración de la animación y luego redirige
-        setTimeout(function () {
-          window.location.href = destino;
-        }, 280); // Mismo tiempo que la animación en ms, aquí 0.28s
+        boton.classList.remove('boton-animado');       // Quita animación previa si existía
+        void boton.offsetWidth;                        // Forzar reflujo, reinicia animación
+        boton.classList.add('boton-animado');          // Añade animación pulse
+        setTimeout(function () {                       // Espera el mismo tiempo que la animación
+          window.location.href = destino;              // Redirige a página destino
+        }, 280);
       }
 
+      // Evento click: ir a login, con animación
       btnInicio.addEventListener('click', function (e) {
-        e.preventDefault(); // Evita el "clic" tradicional mientras animas
+        e.preventDefault(); // Evita el "clic" inmediato nativo
         animarYRedirigir(btnInicio, 'inicio-sesion.html');
       });
 
+      // Evento click: ir a registro, con animación
       btnRegistro.addEventListener('click', function (e) {
         e.preventDefault();
         animarYRedirigir(btnRegistro, 'registrar.html');
@@ -106,5 +111,4 @@
   </script>
 
 </body>
-
 </html>
