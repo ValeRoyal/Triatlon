@@ -1,0 +1,80 @@
+/* Centrado de tarjeta y fondo para main */
+body, html {
+  height: 100%;
+  min-height: 100vh;
+}
+main {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background: var(--moss-green); /* Fondo solo para esta vista */
+}
+
+/* Tarjeta de login */
+.tarjeta-login {
+  max-width: 350px;
+  width: 100%;
+  margin: auto;
+  padding: 2.1rem 2rem 2rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 28px rgba(10,51,35,0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulo-login {
+  font-size: 2rem;
+  margin-bottom: 1.3rem;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1.2rem;
+}
+
+/* Input bonito */
+.input-login {
+  padding: 0.7rem 1rem;
+  border: 1.5px solid var(--moss-green);
+  border-radius: 9px;
+  font-size: 1.04rem;
+  outline: none;
+}
+.input-login:focus {
+  border-color: var(--dark-green);
+  box-shadow: 0 2px 10px rgba(131,153,88,0.14);
+}
+
+/* Botón grande y visible */
+.boton-login {
+  font-size: 1.08rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 1.3rem;
+  padding: 0.7rem 2.3rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Animación pulse para botones */
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.13); }
+  100% { transform: scale(1); }
+}
+.boton-animado {
+  animation: pulse 0.28s;
+}
+
+/* Mensaje de login */
+.mensaje-login {
+  margin-top: .5rem;
+  min-height: 1.2em;
+  font-size: 1rem;
+  text-align: center;
+  color: crimson; /* Mensajes de error */
+}

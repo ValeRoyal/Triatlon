@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrarse - Triatlón</title>
+  <link rel="stylesheet" href="styles.css"><!-- Colores y fuentes globales -->
+  <link rel="stylesheet" href="registrar.css"><!-- Estilos específicos de registro -->
+</head>
+<body>
+  <!-- BARRA SUPERIOR -->
+  <header class="barra-superior fondo-dark-green">
+    <div class="barra-contenido">
+      <span class="titulo-site texto-moss-green">Triatlón</span>
+      <nav>
+        <button class="boton-nav fondo-moss-green texto-midnight-green" id="btn-index">Página principal</button>
+        <button class="boton-nav fondo-moss-green texto-midnight-green" id="btn-iniciar-sesion">Iniciar sesión</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tarjeta-registro fondo-beige">
+      <h2 class="titulo-registro texto-moss-green">Registrarse</h2>
+      <form id="form-registro" class="form-registro">
+        <!-- Cada input es requerido igual que en tu modelo Java -->
+        <input type="text" id="nombre"       name="nombre"         class="input-registro" placeholder="Nombre completo" required>
+        <input type="email" id="correo"      name="correo"         class="input-registro" placeholder="Correo electrónico" required>
+        <input type="text" id="identificacion" name="identificacion" class="input-registro" placeholder="Identificación (cédula, DNI...)" required>
+        <input type="date" id="fecha-nacimiento" name="fechaNacimiento" class="input-registro" placeholder="Fecha de nacimiento" required>
+        <input type="text" id="genero" name="genero" class="input-registro" placeholder="Género (Ej: Masculino/Femenino)" required>
+        <input type="url" id="foto"    name="urlFoto"     class="input-registro" placeholder="URL de tu foto" required>
+        <input type="text" id="categoria" name="categoria" class="input-registro" placeholder="Categoría (Ej: Juvenil, Élite...)" required>
+        <input type="text" id="especialidad" name="especialidad" class="input-registro" placeholder="Especialidad (Ej: Natación)" required>
+        <input type="text" id="modalidad-cross" name="modalidadCross" class="input-registro" placeholder="Modalidad Cross (Sí/No)" required>
+        <button type="submit" class="boton-registro fondo-moss-green texto-midnight-green">Registrar</button>
+        <div id="mensaje-registro" class="mensaje-registro"></div>
+      </form>
+    </section>
+  </main>
+  <script src="registrar.js"></script>
+</body>
+</html>

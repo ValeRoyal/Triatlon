@@ -1,0 +1,56 @@
+# =========================
+# JAVA
+# =========================
+*.class
+*.jar
+*.war
+*.ear
+target/
+build/
+out/
+
+# Logs
+*.log
+
+# =========================
+# MAVEN
+# =========================
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+
+# =========================
+# INTELLIJ IDEA
+# =========================
+.idea/
+*.iml
+
+# =========================
+# NETBEANS
+# =========================
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# =========================
+# VS CODE
+# =========================
+.vscode/
+
+# =========================
+# OS FILES
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# ENV FILES
+# =========================
+.env
+
+# =========================
+# SPRING BOOT
+# =========================
+application-local.properties
+application-local.yml

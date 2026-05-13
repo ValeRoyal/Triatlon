@@ -1,0 +1,98 @@
+/* === SECCIÓN PRESENTACIÓN === */
+.seccion-presentacion {
+  width: 100%;                       /* Ocupa todo el ancho */
+  min-height: 170px;                 /* Altura mínima */
+  text-align: center;                /* Centra texto y emojis */
+  padding: 2.5rem 0;                 /* Espacio arriba y abajo */
+}
+
+.emojis {
+  font-size: 4rem;                   /* Emojis bien grandes */
+  margin-bottom: 1rem;               /* Espacio debajo de emojis */
+}
+.emoji {
+  margin: 0 15px;                    /* Espacio entre cada emoji */
+}
+
+.descripcion-presentacion {
+  font-size: 1.3rem;                 /* Texto grande */
+  font-weight: 500;
+  margin: 0 auto;                    /* Centra horizontal */
+  max-width: 380px;                  /* No se extiende demasiado */
+}
+
+/* === SECCIÓN EQUIPO === */
+.seccion-equipo {
+  width: 100%;
+  min-height: 220px;                  /* Altura mínima */
+  text-align: center;
+  padding: 2.5rem 0 3.5rem 0;         /* Espacio arriba y abajo, más para dar aire */
+}
+
+.titulo {
+  font-size: 4rem;                  /* Un poco más grande para figurar */
+  margin-bottom: 0.3rem;
+}
+
+.desc-equipo {
+  font-size: 1.1rem;
+  margin-bottom: 2.2rem;              /* Airea la parte de arriba */
+  max-width: 500px;
+  margin-left: auto;                  /* Centra horizontal */
+  margin-right: auto;
+}
+
+/* Grid de tarjetas del equipo */
+.equipo-grid {
+  display: flex;                      /* Tarjetas alineadas en fila */
+  justify-content: center;            /* Centra el grid */
+  gap: 2.5rem;                        /* Espacio entre tarjetas */
+  flex-wrap: wrap;                    /* Si no caben, bajan */
+  margin-top: 10px;
+}
+
+.equipo-card {
+  width: 200px;                       /* ancho fijo para las tarjetas */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 16px;                 /* Bordes redondeados */
+  box-shadow: 0 3px 18px rgba(0,0,0,0.12); /* Sombra sutil */
+  padding: 1.4rem 0.5rem 1.2rem 0.5rem;   /* Airea adentro */
+  transition: box-shadow 0.15s;
+}
+.equipo-card:hover {
+  box-shadow: 0 7px 32px rgba(0,0,0,0.18); /* Sombra más grande al pasar */
+}
+
+.avatar {
+  font-size: 2.4rem;                  /* Emoji grande de cada persona */
+}
+
+.nombre {
+  margin-top: 0.8rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.seccion-contacto {
+  width: 100%;
+  min-height: 150px;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.titulo-contacto {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Animación pulse para botones */
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.13); }
+  100% { transform: scale(1); }
+}
+.boton-animado {
+  animation: pulse 0.28s;
+}

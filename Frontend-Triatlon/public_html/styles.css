@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Montserrat&display=swap');
+
+/* Paleta de colores GLOBAL */
+:root {
+  --dark-green:     #0A3323;
+  --moss-green:     #839958;
+  --beige:          #F7F4D5;
+  --rosy-brown:     #D3968C;
+  --midnight-green: #105666;
+}
+
+/* Fuentes globales */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+/* Clases de fondo */
+.fondo-dark-green    { background: var(--dark-green); }
+.fondo-moss-green    { background: var(--moss-green); }
+.fondo-beige         { background: var(--beige); }
+.fondo-rosy-brown    { background: var(--rosy-brown); }
+
+/* Clases de texto*/
+.texto-moss-green    { color: var(--moss-green); }
+.texto-midnight-green{ color: var(--midnight-green);}
+.texto-beige         { color: var(--beige); }
+.texto-dark-green    { color: var(--dark-green); }
+
+/* Títulos */
+.titulo-site, h1, h2, .titulo {
+  font-family: 'Caesar Dressing', cursive;
+}
+
+.enlace {
+  font-size: 1rem;
+  margin-top: 2px;
+  text-decoration: underline;         /* Subraya para parecer enlace */
+}
+
+/* Lo usamos para darle un poquito de animación a los botones, esto lo conectamos con el js, ok? */
+@keyframes pulse {
+  0% { transform: scale(1);}
+  50% { transform: scale(1.13);}
+  100% { transform: scale(1);}
+}
+
+/* Se le agrega a los botones */
+.boton-animado {
+  animation: pulse 0.28s;
+}
+
+/* === Barra superior === */
+.barra-superior {
+  /* Elemento fijo arriba sin borde, ocupa todo el ancho */
+  width: 100%;
+  padding: 0.7rem 0;                 /* Espacio arriba y abajo */
+}
+
+.barra-contenido {
+  max-width: 900px;                  /* Limita ancho del contenido */
+  margin: 0 auto;                    /* Centra la barra */
+  display: flex;                     /* Elementos en fila */
+  justify-content: space-between;    /* Extremos: título a la izq, nav a la der */
+  align-items: center;               /* Centra verticalmente */
+}
+
+.titulo-site {
+  font-size: 2.2rem;                 /* Título destacado en la barra */
+  font-weight: bold;
+}
+
+/* Botones del nav */
+.boton-nav {
+  border: none;                      /* Quita borde */
+  border-radius: 18px;               /* Bordes redondeados */
+  padding: 0.5rem 1.2rem;            /* Espaciado interno */
+  margin-left: 8px;                  /* Espacio entre botones */
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: 'Caesar Dressing', cursive; /* Igual que títulos */
+  transition: background 0.2s;
+}
+
+.boton-nav:hover,
+.boton-login:hover {
+  background: #d3d898;
+}

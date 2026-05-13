@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión - Triatlón</title>
+  <link rel="stylesheet" href="styles.css"><!-- Colores y fuentes globales -->
+  <link rel="stylesheet" href="inicio-sesion.css"><!-- Estilos específicos -->
+</head>
+<body>
+  <!-- BARRA SUPERIOR -->
+  <header class="barra-superior fondo-dark-green">
+    <div class="barra-contenido">
+      <span class="titulo-site texto-moss-green">Triatlón</span>
+      <nav>
+        <button class="boton-nav fondo-moss-green texto-midnight-green" id="btn-index">Página principal</button>
+        <button class="boton-nav fondo-moss-green texto-midnight-green" id="btn-registrarse">Registrarse</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tarjeta-login fondo-beige">
+      <h2 class="titulo-login texto-moss-green">Iniciar sesión</h2>
+      <form id="form-login" class="form-login">
+        <label class="texto-midnight-green" for="identificacion-usuario">Identificación</label>
+        <input
+          type="text"
+          id="identificacion-usuario"
+          name="identificacion-usuario"
+          class="input-login"
+          autocomplete="off"
+          placeholder="Tu identificación"
+          required
+        />
+        <button type="submit" class="boton-login fondo-moss-green texto-midnight-green">Ingresar</button>
+        <div id="mensaje-login" class="mensaje-login"></div>
+      </form>
+    </section>
+  </main>
+  <script src="inicio-sesion.js"></script>
+  
+</body>
+</html>

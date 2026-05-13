@@ -1,15 +1,110 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triatlón</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+  <!-- LA BARRA DE ARRIBA CON LOS BOTONES -->
+  <header class="barra-superior fondo-dark-green">
+    <div class="barra-contenido">
+      <span class="titulo-site texto-moss-green">Triatlón</span>
+      <nav>
+        <button class="boton-nav fondo-moss-green texto-midnight-green" id="btn-inicio">Iniciar Sesión</button>
+        <button class="boton-nav fondo-moss-green texto-midnight-green" id="btn-registrarse">Registrarse</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECCIÓN DE PRESENTACIÓN CHICUELOS -->
+    <section class="seccion-presentacion fondo-beige texto-moss-green">
+      <div class="emojis">
+        <span class="emoji">🏊</span>
+        <span class="emoji">🚴</span>
+        <span class="emoji">🏃</span>
+      </div>
+      <h1 class="titulo">¡Bienvenido a Triatlón!</h1>
+      <p class="descripcion-presentacion">
+        Plataforma para gestionar tus triatlones, atletas y resultados de manera sencilla y visual.
+        ¡Empieza ahora!
+      </p>
+    </section>
+
+    <!-- NOSOTROS -->
+    <section class="seccion-equipo fondo-rosy-brown texto-beige">
+      <h2 class="titulo">¿Quiénes somos?</h2>
+      <p class="desc-equipo">
+        Somos estudiantes de Ingeniería de Sistemas de la Universidad Distrital, dedicados a construir una app útil para
+        deportistas y equipos. Aprendemos y apoyamos el deporte con tecnología simple y de calidad.
+      </p>
+      <div class="equipo-grid">
+        <div class="equipo-card fondo-beige texto-moss-green">
+          <span class="avatar">🌸</span>
+          <span class="nombre">Valentina Aguilar Perdomo</span>
+          <a class="enlace texto-moss-green" href="https://www.linkedin.com/in/valen-aguilar-/"
+            target="_blank">LinkedIn</a>
+        </div>
+        <div class="equipo-card fondo-beige texto-moss-green">
+          <span class="avatar">🚀</span>
+          <span class="nombre">Luis Sebastián Correa Barreto</span>
+          <a class="enlace texto-moss-green" href="https://www.linkedin.com/in/luis-correa-60a729365/"
+            target="_blank">LinkedIn</a>
+        </div>
+        <div class="equipo-card fondo-beige texto-moss-green">
+          <span class="avatar">⭐</span>
+          <span class="nombre">Sergio Steven Vanegas Cuervo</span>
+          <a class="enlace texto-moss-green" href="https://www.linkedin.com/in/sergio-vanegas-612a82407/"
+            target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion-contacto fondo-dark-green texto-beige">
+      <h2 class="titulo-contacto">Contáctanos</h2>
+      <p class="desc-contacto">
+        ¿Tienes preguntas o quieres colaborar? Envíanos un correo a triatlon@universidad.edu.co
+      </p>
+    </section>
+
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const btnInicio = document.getElementById('btn-inicio');
+      const btnRegistro = document.getElementById('btn-registrarse');
+
+      function animarYRedirigir(boton, destino) {
+        // Quita la clase por si ya la tenía
+        boton.classList.remove('boton-animado');
+        // Forzar reflujo para reiniciar la animación
+        void boton.offsetWidth;
+        // Añade la clase de animación
+        boton.classList.add('boton-animado');
+        // Espera la duración de la animación y luego redirige
+        setTimeout(function () {
+          window.location.href = destino;
+        }, 280); // Mismo tiempo que la animación en ms, aquí 0.28s
+      }
+
+      btnInicio.addEventListener('click', function (e) {
+        e.preventDefault(); // Evita el "clic" tradicional mientras animas
+        animarYRedirigir(btnInicio, 'inicio-sesion.html');
+      });
+
+      btnRegistro.addEventListener('click', function (e) {
+        e.preventDefault();
+        animarYRedirigir(btnRegistro, 'registrar.html');
+      });
+    });
+  </script>
+
+</body>
+
 </html>
