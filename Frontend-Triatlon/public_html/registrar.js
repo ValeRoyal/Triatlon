@@ -81,11 +81,20 @@ document.addEventListener('DOMContentLoaded', function() {
             reader.readAsDataURL(file);
         });
         nuevoTriatleta.urlFoto = await toBase64(archivoFoto);
-    } else {
-        nuevoTriatleta.urlFoto = "";
     }
 
-    for (let key in nuevoTriatleta) {
+    const camposObligatorios = [
+      "nombre",
+      "identificacion",
+      "categoria",
+      "genero",
+      "fechaNacimiento",
+      "modalidadCross",
+      "especialidad",
+      "correo"
+    ];
+
+    for (let key of camposObligatorios) {
         if (!nuevoTriatleta[key] && nuevoTriatleta[key] !== false) {
             mensaje.textContent = "Por favor llene todos los campos.";
             mensaje.style.color = "crimson";
