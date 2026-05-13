@@ -1,5 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // ...botones index y login igual...
+  // Botones de barra
+  const btnIndex = document.getElementById('btn-index');
+  const btnInicioSesion = document.getElementById('btn-iniciar-sesion');
+  if (btnIndex) {
+    btnIndex.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'index.html';
+    });
+  }
+  if (btnInicioSesion) {
+    btnInicioSesion.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'inicio-sesion.html';
+    });
+  }
 
   const form = document.getElementById('form-registro');
   const mensaje = document.getElementById('mensaje-registro');
